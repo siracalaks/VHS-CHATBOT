@@ -86,50 +86,7 @@
       v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
   })(document, 'script');
 </script>
-	  <script src="https://tally.so/widgets/embed.js"></script>
-<button
-  data-tally-open="<FORM_ID>"
-  data-tally-embed-src="https://tally.so/embed/<FORM_ID>?utm_source={{source}}&utm_medium={{medium}}&utm_campaign={{campaign}}&ref={{ref}}">
-  Formular öffnen
-</button>
-<script>
-  // URL'den UTM yakala -> cookie'ye yaz (first-touch)
-  (function() {
-    const p = new URLSearchParams(location.search);
-    const utms = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','ref'];
-    utms.forEach(k=>{
-      const v = p.get(k);
-      if (v && !document.cookie.includes(k+'=')) {
-        document.cookie = k + '=' + encodeURIComponent(v) + '; path=/; max-age=' + (60*60*24*90);
-      }
-    });
-    // Cookie'lerden oku
-    function getC(n){
-      const m = document.cookie.match('(^|;)\\s*'+n+'\\s*=\\s*([^;]+)');
-      return m ? decodeURIComponent(m.pop()) : '';
-    }
-    // iFrame ise src paramlarını güncelle
-    const ifr = document.querySelector('iframe[src*="tally.so/r/"]');
-    if (ifr) {
-      const url = new URL(ifr.src);
-      ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','ref'].forEach(k=>{
-        const val = getC(k);
-        if (val && !url.searchParams.get(k)) url.searchParams.set(k, val);
-      });
-      ifr.src = url.toString();
-    }
-    // Popup butonu ise data-tally-embed-src’yi güncelle
-    const btn = document.querySelector('[data-tally-embed-src]');
-    if (btn) {
-      const url = new URL(btn.getAttribute('data-tally-embed-src'));
-      ['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','ref'].forEach(k=>{
-        const val = getC(k);
-        if (val && !url.searchParams.get(k)) url.searchParams.set(k, val);
-      });
-      btn.setAttribute('data-tally-embed-src', url.toString());
-    }
-  })();
-</script>
+	 
 
   
 </body></html>
